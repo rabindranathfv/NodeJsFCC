@@ -63,18 +63,13 @@ app.get('/:word/echo', (req, res) => {
 
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
-app.route('/name').get((req, res) => {
-    let first = req.query.first;
-    let last = req.query.last;
-    let jsonObj = { name: `${first} ${last}` };
-    res.send(jsonObj);
-}).post((req, res) => {
-    let first = req.body.first;
-    let last = req.body.last;
-    let jsonObj = { name: `${first} ${last}` };
-    res.send(jsonObj);
-});
-
+app.route('/name')
+    .get((req, res) => {
+        res.send({ name: `${req.query.first} ${req.query.last}` });
+    })
+    .post((req, res) => {
+        res.send({ name: `${req.body.first} ${req.body.last}` });
+    });
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
 
